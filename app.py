@@ -91,7 +91,7 @@ st.markdown("### *Game Theory Analysis of Adversarial Attacks on Battlefield Com
 
 # Sidebar
 with st.sidebar:
-    st.image("https://via.placeholder.com/300x100/2d3436/00b894?text=BattleVision", use_container_width=True)
+    st.image("https://via.placeholder.com/300x100/2d3436/00b894?text=BattleVision", width='stretch')
     st.markdown("---")
     st.markdown("### ðŸ“Š Mission Brief")
     st.info("Analyze adversarial warfare through game theory and computer vision")
@@ -187,14 +187,13 @@ with tab1:
         compare_col1, compare_col2 = st.columns(2)
         with compare_col1:
             st.markdown("**âœ… Clean Detection**")
-            st.image("https://via.placeholder.com/300x200/00b894/ffffff?text=Clear+Target+Detected", 
-                    use_container_width=True)
+            st.image("https://via.placeholder.com/300x200/00b894/ffffff?text=Clear+Target+Detected", width='stretch')
             st.success("Detection Confidence: 95%")
         
         with compare_col2:
             st.markdown("**âŒ Adversarial Patch Applied**")
-            st.image("https://via.placeholder.com/300x200/d63031/ffffff?text=Target+Lost", 
-                    use_container_width=True)
+            st.image("https://via.placeholder.com/300x200/d63031/ffffff?text=Target+Lost", use_container_width=True)
+
             st.error("Detection Confidence: 12%")
     
     st.markdown("---")
@@ -526,12 +525,12 @@ with tab3:
             )
             # Generate placeholder
             uploaded_image = np.random.randint(0, 255, (480, 640, 3), dtype=np.uint8)
-            st.image(uploaded_image, caption=f"Sample: {sample_choice}", use_container_width=True)
+            st.image(uploaded_image, caption=f"Sample: {sample_choice}", width='stretch')
         else:
             uploaded_file = st.file_uploader("Upload battlefield image", type=['jpg', 'png', 'jpeg'])
             if uploaded_file:
                 uploaded_image = np.array(Image.open(uploaded_file))
-                st.image(uploaded_image, caption="Uploaded Image", use_container_width=True)
+                st.image(uploaded_image, caption=f"Sample: {sample_choice}", width='stretch')
             else:
                 uploaded_image = None
         
@@ -544,7 +543,7 @@ with tab3:
                     st.success(f"âœ… Detected {len(detections)} objects")
             
             if st.session_state.results['baseline_detection']:
-                st.image(st.session_state.baseline_img, caption="Baseline Detection", use_container_width=True)
+                st.image(uploaded_image, caption=f"Sample: {sample_choice}", width='stretch')
                 
                 num_detections = len(st.session_state.results['baseline_detection'])
                 avg_confidence = np.mean([d['confidence'] for d in st.session_state.results['baseline_detection']]) if num_detections > 0 else 0
@@ -585,8 +584,8 @@ with tab3:
                         st.session_state.results['attack_success_rate'] = (baseline_count - attacked_count) / max(baseline_count, 1)
             
             if st.session_state.results['attacked_detection'] is not None:
-                st.image(st.session_state.attacked_img, caption="After Attack", use_container_width=True)
-                
+                st.image(uploaded_image, caption=f"Sample: {sample_choice}", width='stretch')
+
                 num_detections_after = len(st.session_state.results['attacked_detection'])
                 success_rate = st.session_state.results['attack_success_rate']
                 
@@ -639,8 +638,8 @@ with tab3:
                     st.session_state.results['defense_success_rate'] = defended_count / max(baseline_count, 1)
             
             if st.session_state.results['defended_detection'] is not None:
-                st.image(st.session_state.defended_img, caption="After Defense", use_container_width=True)
-                
+                st.image(uploaded_image, caption=f"Sample: {sample_choice}", width='stretch')
+
                 num_defended = len(st.session_state.results['defended_detection'])
                 defense_recovery = st.session_state.results['defense_success_rate']
                 
