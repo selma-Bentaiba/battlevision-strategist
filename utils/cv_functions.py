@@ -3,10 +3,7 @@ import cv2
 from PIL import Image
 
 def detect_objects(image):
-    """
-    Simulated object detection using simple color/edge detection
-    In production, this would use YOLO or similar model
-    """
+  
     # Convert to grayscale
     if len(image.shape) == 3:
         gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
